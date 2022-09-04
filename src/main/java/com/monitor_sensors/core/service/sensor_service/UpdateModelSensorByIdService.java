@@ -4,7 +4,6 @@ import com.monitor_sensors.core.database.SensorRepository;
 import com.monitor_sensors.core.requests.sensor_requests.UpdateModelSensorByIdRequest;
 import com.monitor_sensors.core.responses.CoreError;
 import com.monitor_sensors.core.responses.sensor_response.UpdateModelSensorByIdResponse;
-import com.monitor_sensors.core.responses.sensor_response.UpdateRangeFromSensorByIdResponse;
 import com.monitor_sensors.core.service.validators.sensor_validators.UpdateModelValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
