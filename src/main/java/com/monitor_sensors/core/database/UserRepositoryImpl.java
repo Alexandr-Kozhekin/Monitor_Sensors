@@ -1,8 +1,10 @@
 package com.monitor_sensors.core.database;
 
 import com.monitor_sensors.core.domain.User;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
