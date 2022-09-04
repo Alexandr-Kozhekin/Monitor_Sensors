@@ -1,9 +1,10 @@
 package com.monitor_sensors.core.domain;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Objects;
+
+import java.util.*;
 
 @Entity
 @Table(name = "USERS")
@@ -18,6 +19,10 @@ public class User implements Serializable {
     @Column(name = "role", nullable = false)
     private UserRole userRole;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "state", nullable = false)
+    private UserState userState;
+
     @Column(name = "email", nullable = false)
     private String email;
 
@@ -31,6 +36,7 @@ public class User implements Serializable {
         this.email = email;
         this.password = password;
         this.userRole = UserRole.USER;
+        this.userState = UserState.ACTIVE;
     }
 
     public Long getId() {
@@ -47,6 +53,14 @@ public class User implements Serializable {
 
     public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
+    }
+
+    public UserState getUserState() {
+        return userState;
+    }
+
+    public void setUserState(UserState userState) {
+        this.userState = userState;
     }
 
     public String getEmail() {
@@ -70,12 +84,12 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && userRole == user.userRole && Objects.equals(email, user.email) && Arrays.equals(password, user.password);
+        return Objects.equals(id, user.id) && userRole == user.userRole && userState == user.userState && Objects.equals(email, user.email) && Arrays.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, userRole, email);
+        int result = Objects.hash(id, userRole, userState, email);
         result = 31 * result + Arrays.hashCode(password);
         return result;
     }
@@ -85,6 +99,7 @@ public class User implements Serializable {
         return "User{" +
                 "id=" + id +
                 ", userRole=" + userRole +
+                ", userState=" + userState +
                 ", email='" + email + '\'' +
                 ", password=" + Arrays.toString(password) +
                 '}';
