@@ -11,4 +11,7 @@ public interface UserRepository {
     User authorizationUser(String email, char[] password);
 
     List<User> fiendAllUsers();
+
+    User findUserByEmail(String email);
+
 }

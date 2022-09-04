@@ -29,7 +29,7 @@ public class UserRepositoryImpl implements UserRepository{
         query.setParameter("password", password);
         query.getResultList();
 
-        return (User)query.getResultList().get(0);
+        return (User) query.getResultList().get(0);
     }
 
     public List<User> fiendAllUsers() {
@@ -39,6 +39,16 @@ public class UserRepositoryImpl implements UserRepository{
                 .createQuery("SELECT u FROM User u", User.class)
                 .getResultList();
 
+    }
+
+    public User findUserByEmail(String email){
+
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("SELECT u FROM User u WHERE email = :email", User.class);
+
+        query.setParameter("email", email);
+
+        return (User) query.getResultList().get(0);
     }
 
 }
