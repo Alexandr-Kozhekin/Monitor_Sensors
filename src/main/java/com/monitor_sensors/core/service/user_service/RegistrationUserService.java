@@ -8,6 +8,7 @@ import com.monitor_sensors.core.responses.user_response.RegistrationUserResponse
 import com.monitor_sensors.core.service.validators.user_validators.RegistrationUserValidator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,6 +20,8 @@ public class RegistrationUserService {
 
     @Autowired RegistrationUserValidator validator;
 
+    @Autowired private PasswordEncoder passwordEncoder;
+
     public RegistrationUserResponse execute(RegistrationUserRequest request) {
 
         List<CoreError> errors = validator.validate(request);
@@ -27,7 +30,9 @@ public class RegistrationUserService {
             return new RegistrationUserResponse(errors);
         }
 
-        User registration = new User(request.getEmail(), request.getPassword());
+        String hashPassword = passwordEncoder.encode(String.copyValueOf(request.getPassword()));
+
+        User registration = new User(request.getEmail(), hashPassword.toCharArray());
 
         userRepository.registrationUser(registration);
 
