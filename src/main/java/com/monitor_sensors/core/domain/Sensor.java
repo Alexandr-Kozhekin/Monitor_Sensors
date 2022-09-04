@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 import java.util.*;
+
 @Entity
 @Table(name = "SENSORS")
 public class Sensor implements Serializable {
@@ -21,18 +22,16 @@ public class Sensor implements Serializable {
     private String model;
 
     @Column(name = "range_from")
-    private Long rangeFrom;
+    private int rangeFrom;
 
     @Column(name = "range_to")
-    private Long rangeTo;
+    private int rangeTo;
 
-    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type")
-    private Type type;
+    private String type;
 
     @JoinColumn(name = "unit")
-    @OneToOne(fetch = FetchType.EAGER)
-    private Unit unit;
+    private String unit;
 
     @Column(name = "location")
     private String location;
@@ -43,7 +42,12 @@ public class Sensor implements Serializable {
     public Sensor() {
     }
 
-    public Sensor(String title, String model, Long rangeFrom, Long rangeTo, Type type) {
+    public Sensor(Long id, String title, String model) {
+        this.id = id;
+        this.title = title;
+        this.model = model;
+    }
+    public Sensor(String title, String model, int rangeFrom, int rangeTo, String type) {
         this.title = title;
         this.model = model;
         this.rangeFrom = rangeFrom;
@@ -51,7 +55,7 @@ public class Sensor implements Serializable {
         this.type = type;
     }
 
-    public Sensor(String title, String model, Long rangeFrom, Long rangeTo, Type type, Unit unit, String location, String description) {
+    public Sensor(String title, String model, int rangeFrom, int rangeTo, String type, String unit, String location, String description) {
         this.title = title;
         this.model = model;
         this.rangeFrom = rangeFrom;
@@ -86,35 +90,35 @@ public class Sensor implements Serializable {
         this.model = model;
     }
 
-    public Long getRangeFrom() {
+    public int getRangeFrom() {
         return rangeFrom;
     }
 
-    public void setRangeFrom(Long rangeFrom) {
+    public void setRangeFrom(int rangeFrom) {
         this.rangeFrom = rangeFrom;
     }
 
-    public Long getRangeTo() {
+    public int getRangeTo() {
         return rangeTo;
     }
 
-    public void setRangeTo(Long rangeTo) {
+    public void setRangeTo(int rangeTo) {
         this.rangeTo = rangeTo;
     }
 
-    public Type getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(String type) {
         this.type = type;
     }
 
-    public Unit getUnit() {
+    public String getUnit() {
         return unit;
     }
 
-    public void setUnit(Unit unit) {
+    public void setUnit(String unit) {
         this.unit = unit;
     }
 
@@ -165,11 +169,18 @@ public class Sensor implements Serializable {
 
 @Entity
 @Table(name = "TYPE")
-final class Type {
+class Type {
 
     @Id
     @Column(name = "type")
     private String type;
+
+    public Type() {
+    }
+
+    public Type(String type) {
+        this.type = type;
+    }
 
     public String getType() {
         return type;
@@ -183,11 +194,18 @@ final class Type {
 
 @Entity
 @Table(name = "UNIT")
-final class Unit {
+class Unit {
 
     @Id
     @Column(name = "unit")
     private String unit;
+
+    public Unit() {
+    }
+
+    public Unit(String unit) {
+        this.unit = unit;
+    }
 
     public String getUnit() {
         return unit;
@@ -198,54 +216,3 @@ final class Unit {
     }
 
 }
-
-//final class Range {
-//
-//    @Column(name = "range_from")
-//    private int from;
-//
-//    @Column(name = "range_to")
-//    private int to;
-//
-//    public Range(int from, int to) {
-//        this.from = from;
-//        this.to = to;
-//    }
-//
-//    public int getFrom() {
-//        return from;
-//    }
-//
-//    public void setFrom(int from) {
-//        this.from = from;
-//    }
-//
-//    public int getTo() {
-//        return to;
-//    }
-//
-//    public void setTo(int to) {
-//        this.to = to;
-//    }
-//
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Range range = (Range) o;
-//        return from == range.from && to == range.to;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(from, to);
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "Range{" +
-//                "from=" + from +
-//                ", to=" + to +
-//                '}';
-//    }
-//}
