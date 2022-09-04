@@ -110,7 +110,7 @@ public class SensorRepositoryImpl implements SensorRepository {
 
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("UPDATE Sensor SET model = :updateModel WHERE id = :idSensor")
-                .setParameter("updateTitle", updateModel)
+                .setParameter("updateModel", updateModel)
                 .setParameter("idSensor", idSensor);
 
         return query.executeUpdate() == 1;
