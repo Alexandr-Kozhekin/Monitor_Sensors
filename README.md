@@ -19,4 +19,6 @@ https://www.jetbrains.com/help/idea/manage-projects-hosted-on-github.html#clone-
 URL проекта: https://github.com/Alexandr-Kozhekin/Monitor_Sensors.git
 8. В application.properties укажите имя установленное при установке PostgreSQL (стандартное: postgres) и пароль (введенный при установке PostgreSQL) для подключения к базе данных (application.properties находится в пакете src.main.resources):
 database.user.name= ____________(postgres) database.user.password= ____________
-9. В IntelliJ Idea запустите скачаный проект
+9. скрипт для создания начальной структуры БД находится в пакете dbCreationScript
+10. запустите скрипт используя SQL Shell (psql)
+11. В IntelliJ Idea запустите скачаный проект
