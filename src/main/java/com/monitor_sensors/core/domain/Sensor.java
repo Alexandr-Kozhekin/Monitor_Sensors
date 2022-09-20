@@ -1,42 +1,27 @@
 package com.monitor_sensors.core.domain;
 
-import javax.persistence.*;
-
 import java.io.Serializable;
 
 import java.util.*;
 
-@Entity
-@Table(name = "SENSORS")
 public class Sensor implements Serializable {
 
-    @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "SENSORS")
     private Long id;
 
-    @Column(name = "title")
     private String title;
 
-    @Column(name = "model")
     private String model;
 
-    @Column(name = "range_from")
     private int rangeFrom;
 
-    @Column(name = "range_to")
     private int rangeTo;
 
-    @JoinColumn(name = "type")
     private String type;
 
-    @JoinColumn(name = "unit")
     private String unit;
 
-    @Column(name = "location")
     private String location;
 
-    @Column(name = "description")
     private String description;
 
     public Sensor() {
@@ -167,12 +152,8 @@ public class Sensor implements Serializable {
     }
 }
 
-@Entity
-@Table(name = "TYPE")
 class Type {
 
-    @Id
-    @Column(name = "type")
     private String type;
 
     public Type() {
@@ -192,12 +173,8 @@ class Type {
 
 }
 
-@Entity
-@Table(name = "UNIT")
 class Unit {
 
-    @Id
-    @Column(name = "unit")
     private String unit;
 
     public Unit() {

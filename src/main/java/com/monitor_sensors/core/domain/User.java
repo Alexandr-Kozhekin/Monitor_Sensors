@@ -1,32 +1,19 @@
 package com.monitor_sensors.core.domain;
 
-import javax.persistence.*;
-
 import java.io.Serializable;
 
 import java.util.*;
 
-@Entity
-@Table(name = "USERS")
 public class User implements Serializable {
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "USERS")
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
     private UserRole userRole;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "state", nullable = false)
     private UserState userState;
 
-    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "password", nullable = false)
     private char[] password;
 
     public User() {
