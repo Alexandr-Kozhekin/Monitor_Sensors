@@ -9,7 +9,6 @@ import java.sql.SQLException;
 
 public class SensorRowMapper implements RowMapper<Sensor> {
 
-
     @Override
     public Sensor mapRow(ResultSet rs, int rowNum) throws SQLException {
 
