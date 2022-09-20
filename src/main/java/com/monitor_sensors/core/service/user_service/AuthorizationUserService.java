@@ -15,9 +15,9 @@ import java.util.List;
 @Component
 public class AuthorizationUserService {
 
-    @Autowired UserRepository userRepository;
+    @Autowired private UserRepository userRepository;
 
-    @Autowired AuthorizationUserValidator validator;
+    @Autowired private AuthorizationUserValidator validator;
 
     public AuthorizationUserResponse execute(AuthorizationUserRequest request) {
 

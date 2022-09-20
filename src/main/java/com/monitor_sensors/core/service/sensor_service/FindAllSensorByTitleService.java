@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class FindAllSensorByTitleService {
 
-    @Autowired SensorRepository sensorRepository;
+    @Autowired private SensorRepository sensorRepository;
 
     public FindAllSensorByTitleResponse execute(FindAllSensorByTitleRequest request) {
 

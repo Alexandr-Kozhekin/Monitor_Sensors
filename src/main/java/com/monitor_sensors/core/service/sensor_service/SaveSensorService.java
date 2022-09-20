@@ -16,7 +16,7 @@ public class SaveSensorService {
 
     @Autowired private SensorRepository sensorRepository;
 
-    @Autowired SaveSensorValidator validator;
+    @Autowired private SaveSensorValidator validator;
 
     public SaveSensorResponse execute(SaveSensorRequest request) {
 

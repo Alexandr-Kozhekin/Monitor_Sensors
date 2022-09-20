@@ -12,7 +12,7 @@ import java.util.*;
 @Component
 public class AuthorizationUserValidator {
 
-    @Autowired UserRepository userRepository;
+    @Autowired private UserRepository userRepository;
 
     public List<CoreError> validate (AuthorizationUserRequest request) {
         List<CoreError> errors = new ArrayList<>();

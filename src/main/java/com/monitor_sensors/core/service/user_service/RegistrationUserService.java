@@ -16,9 +16,9 @@ import java.util.List;
 @Component
 public class RegistrationUserService {
 
-    @Autowired UserRepository userRepository;
+    @Autowired private UserRepository userRepository;
 
-    @Autowired RegistrationUserValidator validator;
+    @Autowired private RegistrationUserValidator validator;
 
     @Autowired private PasswordEncoder passwordEncoder;
 
