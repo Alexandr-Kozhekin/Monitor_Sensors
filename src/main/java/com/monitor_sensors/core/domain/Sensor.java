@@ -27,11 +27,6 @@ public class Sensor implements Serializable {
     public Sensor() {
     }
 
-    public Sensor(Long id, String title, String model) {
-        this.id = id;
-        this.title = title;
-        this.model = model;
-    }
     public Sensor(String title, String model, int rangeFrom, int rangeTo, String type) {
         this.title = title;
         this.model = model;
@@ -40,7 +35,8 @@ public class Sensor implements Serializable {
         this.type = type;
     }
 
-    public Sensor(String title, String model, int rangeFrom, int rangeTo, String type, String unit, String location, String description) {
+    public Sensor(String title, String model, int rangeFrom, int rangeTo, String type,
+                  String unit, String location, String description) {
         this.title = title;
         this.model = model;
         this.rangeFrom = rangeFrom;
@@ -149,47 +145,6 @@ public class Sensor implements Serializable {
                 ", location='" + location + '\'' +
                 ", description='" + description + '\'' +
                 '}';
-    }
-}
-
-class Type {
-
-    private String type;
-
-    public Type() {
-    }
-
-    public Type(String type) {
-        this.type = type;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-}
-
-class Unit {
-
-    private String unit;
-
-    public Unit() {
-    }
-
-    public Unit(String unit) {
-        this.unit = unit;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
     }
 
 }
