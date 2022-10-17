@@ -14,9 +14,20 @@ public class UpdateModelValidator {
 
         List<CoreError> errors = new ArrayList<>();
 
+        validateIdSensor(request).ifPresent(errors::add);
         validateModel(request).ifPresent(errors::add);
 
         return errors;
+    }
+
+    private Optional<CoreError> validateIdSensor(UpdateModelSensorByIdRequest request) {
+
+        if (request.getId() == null || request.getId() <= 0) {
+            return Optional.of(new CoreError("id", "Must not be empty!"));
+        } else {
+            return Optional.empty();
+        }
+
     }
 
     private Optional<CoreError> validateModel(UpdateModelSensorByIdRequest request) {
@@ -28,4 +39,5 @@ public class UpdateModelValidator {
         }
 
     }
+
 }

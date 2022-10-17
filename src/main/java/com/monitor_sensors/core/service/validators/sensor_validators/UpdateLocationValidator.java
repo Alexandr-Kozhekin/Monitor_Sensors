@@ -14,9 +14,20 @@ public class UpdateLocationValidator {
 
         List<CoreError> errors = new ArrayList<>();
 
+        validateIdSensor(request).ifPresent(errors::add);
         validateLocation(request).ifPresent(errors::add);
 
         return errors;
+    }
+
+    private Optional<CoreError> validateIdSensor(UpdateLocationSensorByIdRequest request) {
+
+        if (request.getId() == null || request.getId() <= 0) {
+            return Optional.of(new CoreError("id", "Must not be empty!"));
+        } else {
+            return Optional.empty();
+        }
+
     }
 
     private Optional<CoreError> validateLocation(UpdateLocationSensorByIdRequest request) {

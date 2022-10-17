@@ -14,9 +14,20 @@ public class UpdateDescriptionValidator {
 
         List<CoreError> errors = new ArrayList<>();
 
+        validateIdSensor(request).ifPresent(errors::add);
         validateDescription(request).ifPresent(errors::add);
 
         return errors;
+    }
+
+    private Optional<CoreError> validateIdSensor(UpdateDescriptionSensorByIdRequest request) {
+
+        if (request.getId() == null || request.getId() <= 0) {
+            return Optional.of(new CoreError("id", "Must not be empty!"));
+        } else {
+            return Optional.empty();
+        }
+
     }
 
     private Optional<CoreError> validateDescription(UpdateDescriptionSensorByIdRequest request) {
@@ -28,4 +39,5 @@ public class UpdateDescriptionValidator {
         }
 
     }
+
 }

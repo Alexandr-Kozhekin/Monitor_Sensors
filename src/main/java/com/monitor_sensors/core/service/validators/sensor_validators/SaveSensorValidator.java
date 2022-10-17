@@ -35,7 +35,6 @@ public class SaveSensorValidator {
 
     }
 
-
     private Optional<CoreError> validateModel(SaveSensorRequest request) {
 
         if (request.getModel() == null || request.getModel().isEmpty()) {
@@ -57,11 +56,12 @@ public class SaveSensorValidator {
         } else {
             return Optional.empty();
         }
+
     }
 
     private Optional<CoreError> validateLocation(SaveSensorRequest request) {
 
-        if (request.getLocation().length() > 40) {
+        if (request.getLocation() != null && request.getLocation().length() > 40) {
             return Optional.of(new CoreError("location", "Must not be long!"));
         } else {
             return Optional.empty();
@@ -71,7 +71,7 @@ public class SaveSensorValidator {
 
     private Optional<CoreError> validateDescription(SaveSensorRequest request) {
 
-         if (request.getDescription().length() > 200) {
+         if (request.getDescription() != null && request.getDescription().length() > 200) {
             return Optional.of(new CoreError("description", "Must not be long!"));
         } else {
             return Optional.empty();
