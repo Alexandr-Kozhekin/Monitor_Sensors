@@ -6,6 +6,7 @@ import com.monitor_sensors.core.requests.sensor_requests.SaveSensorRequest;
 import com.monitor_sensors.core.responses.CoreError;
 import com.monitor_sensors.core.responses.sensor_response.SaveSensorResponse;
 import com.monitor_sensors.core.service.validators.sensor_validators.SaveSensorValidator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -34,4 +35,5 @@ public class SaveSensorService {
 
         return new SaveSensorResponse(sensor);
     }
+
 }

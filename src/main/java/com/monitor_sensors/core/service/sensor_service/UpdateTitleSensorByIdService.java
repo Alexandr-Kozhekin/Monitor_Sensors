@@ -3,9 +3,9 @@ package com.monitor_sensors.core.service.sensor_service;
 import com.monitor_sensors.core.database.SensorRepository;
 import com.monitor_sensors.core.requests.sensor_requests.UpdateTitleSensorByIdRequest;
 import com.monitor_sensors.core.responses.CoreError;
-import com.monitor_sensors.core.responses.sensor_response.SaveSensorResponse;
 import com.monitor_sensors.core.responses.sensor_response.UpdateTitleSensorByIdResponse;
 import com.monitor_sensors.core.service.validators.sensor_validators.UpdateTitleValidator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,4 +29,5 @@ public class UpdateTitleSensorByIdService {
         return new UpdateTitleSensorByIdResponse(sensorRepository
                 .updateTitleSensorById(request.getUpdateTitle(), request.getId()));
     }
+
 }

@@ -5,6 +5,7 @@ import com.monitor_sensors.core.requests.sensor_requests.UpdateDescriptionSensor
 import com.monitor_sensors.core.responses.CoreError;
 import com.monitor_sensors.core.responses.sensor_response.UpdateDescriptionSensorByIdResponse;
 import com.monitor_sensors.core.service.validators.sensor_validators.UpdateDescriptionValidator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,4 +29,5 @@ public class UpdateDescriptionSensorByIdService {
         return new UpdateDescriptionSensorByIdResponse(sensorRepository
                 .updateDescriptionSensorById(request.getUpdateDescription(), request.getId()));
     }
+
 }
