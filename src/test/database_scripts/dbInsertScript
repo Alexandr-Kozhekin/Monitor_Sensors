@@ -1,0 +1,17 @@
+INSERT INTO SENSORS (title, model, range_from, range_to, type, unit)
+VALUES ('test1', 'test_model1', 2, 30, 'Temperature', '°С')
+
+INSERT INTO SENSORS (title, model, range_from, range_to, type, unit)
+VALUES ('test2', 'test_model1', 2, 30, 'Temperature', '°С')
+
+INSERT INTO SENSORS (title, model, range_from, range_to, type, unit)
+VALUES ('test3', 'test_model2', 20, 100, 'Temperature', '°С')
+
+INSERT INTO SENSORS (title, model, range_from, range_to, type, unit)
+VALUES ('test4', 'test_model2', 20, 100, 'Voltage', 'voltage')
+
+INSERT INTO SENSORS (title, model, range_from, range_to, type, unit)
+VALUES ('test5', 'test_model3', 10, 150, 'Temperature', '°С')
+
+INSERT INTO USERS (id, role, state, email, password)
+VALUES (0, 'ADMIN', 'ACTIVE', 'test@test.test', '$2a$12$yeeYr1D.f9coenLrXaFn.OGmEzAn/Xaw3rD1NsEFQi.8UrfYVl95W')
