@@ -29,7 +29,7 @@ public class SensorRepositoryImpl implements SensorRepository {
     @Override
     public ArrayList<Sensor> findAllSensor() {
 
-        String sql = "SELECT id, title, model FROM SENSORS";
+        String sql = "SELECT * FROM SENSORS";
 
         return (ArrayList<Sensor>) jdbcTemplate.query(sql, new SensorRowMapper());
     }
@@ -37,11 +37,9 @@ public class SensorRepositoryImpl implements SensorRepository {
     @Override
     public ArrayList<Sensor> findAllSensorByParam(String[] param) {
 
-        String sql = "SELECT * FROM SENSORS WHERE (title LIKE ?) OR (model LIKE ?) " +
-                "OR (range_from LIKE ?) OR (range_to LIKE ?) OR (type LIKE ?) " +
-                "OR (unit LIKE ?) OR (location LIKE ?) OR (description LIKE ?)";
+        String sql = generatorSelectQueries(param);
 
-        return (ArrayList<Sensor>) jdbcTemplate.query(sql, param, new SensorRowMapper());
+        return (ArrayList<Sensor>) jdbcTemplate.query(sql, new SensorRowMapper());
     }
 
     @Override
@@ -71,7 +69,7 @@ public class SensorRepositoryImpl implements SensorRepository {
 
         Object[] args = new Object[] {updateTitle, idSensor};
 
-        return jdbcTemplate.update(sql, args, new SensorRowMapper()) == 1;
+        return jdbcTemplate.update(sql, args) == 1;
     }
 
     @Override
@@ -81,7 +79,7 @@ public class SensorRepositoryImpl implements SensorRepository {
 
         Object[] args = new Object[] {updateModel, idSensor};
 
-        return jdbcTemplate.update(sql, args, new SensorRowMapper()) == 1;
+        return jdbcTemplate.update(sql, args) == 1;
     }
 
     @Override
@@ -91,7 +89,7 @@ public class SensorRepositoryImpl implements SensorRepository {
 
         Object[] args = new Object[] {updateRangeFrom, idSensor};
 
-        return jdbcTemplate.update(sql, args, new SensorRowMapper()) == 1;
+        return jdbcTemplate.update(sql, args) == 1;
     }
 
     @Override
@@ -101,7 +99,7 @@ public class SensorRepositoryImpl implements SensorRepository {
 
         Object[] args = new Object[] {updateRangeTo, idSensor};
 
-        return jdbcTemplate.update(sql, args, new SensorRowMapper()) == 1;
+        return jdbcTemplate.update(sql, args) == 1;
     }
 
     @Override
@@ -111,7 +109,7 @@ public class SensorRepositoryImpl implements SensorRepository {
 
         Object[] args = new Object[] {updateType, idSensor};
 
-        return jdbcTemplate.update(sql, args, new SensorRowMapper()) == 1;
+        return jdbcTemplate.update(sql, args) == 1;
     }
 
     @Override
@@ -121,7 +119,7 @@ public class SensorRepositoryImpl implements SensorRepository {
 
         Object[] args = new Object[] {updateUnit, idSensor};
 
-        return jdbcTemplate.update(sql, args, new SensorRowMapper()) == 1;
+        return jdbcTemplate.update(sql, args) == 1;
     }
 
     @Override
@@ -131,7 +129,7 @@ public class SensorRepositoryImpl implements SensorRepository {
 
         Object[] args = new Object[] {updateLocation, idSensor};
 
-        return jdbcTemplate.update(sql, args, new SensorRowMapper()) == 1;
+        return jdbcTemplate.update(sql, args) == 1;
     }
 
     @Override
@@ -141,17 +139,49 @@ public class SensorRepositoryImpl implements SensorRepository {
 
         Object[] args = new Object[] {updateDescription, idSensor};
 
-        return jdbcTemplate.update(sql, args, new SensorRowMapper()) == 1;
+        return jdbcTemplate.update(sql, args) == 1;
     }
 
     @Override
     public boolean deleteSensorById(Long idSensor) {
 
-        String sql = "DELETE SENSORS WHERE id = ?";
+        String sql = "DELETE FROM SENSORS WHERE id = ?";
 
         Object[] args = new Object[] {idSensor};
 
         return jdbcTemplate.update(sql, args) == 1;
+    }
+
+    private String generatorSelectQueries(String[] param) {
+
+        String[] allParams = new String[]{
+                "title", "model", "range_from", "range_to",
+                "type", "unit", "location", "description"
+        };
+
+        StringBuilder sql = new StringBuilder("SELECT * FROM SENSORS WHERE");
+
+        int counterParam = 0;
+
+        for (int i = 0; i < allParams.length; i++) {
+
+            if (!param[i].equals("")) {
+                if(!param[i].matches("\\d+")) {
+                    sql.append(" " + allParams[i] + " = " + "'" + param[i] + "'" + " OR ");
+                } else {
+                    sql.append(" " + allParams[i] + " = " + param[i] + " OR ");
+                }
+                counterParam += 1;
+            }
+
+        }
+
+        if (counterParam == 0) {
+            return sql.append(" id = 0").toString();
+        } else {
+            return sql.substring(0, sql.length() - 4);
+        }
+
     }
 
 }
