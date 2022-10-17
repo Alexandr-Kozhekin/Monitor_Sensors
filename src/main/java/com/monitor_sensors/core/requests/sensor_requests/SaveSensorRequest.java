@@ -19,12 +19,11 @@ public class SaveSensorRequest {
     public SaveSensorRequest() {
     }
 
-    public SaveSensorRequest(String title, String model, RangeRequest range, String type, String unit) {
+    public SaveSensorRequest(String title, String model, RangeRequest range, String type) {
         this.title = title;
         this.model = model;
         this.range = range;
         this.type = type;
-        this.unit = unit;
     }
 
     public SaveSensorRequest(String title, String model, RangeRequest range, String type, String unit, String location, String description) {
